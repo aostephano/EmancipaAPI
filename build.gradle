@@ -16,10 +16,28 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // Spring Boot
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Spring Data
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Database
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // Utils
+    implementation 'org.projectlombok:lombok:1.18.26'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Test
+    testImplementation 'junit:junit:4.13.1'
+
+    //Validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
 }
 
 tasks.named('test') {
