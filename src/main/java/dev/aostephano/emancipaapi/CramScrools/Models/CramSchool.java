@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CramSchool {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private UUID uuid;
     private String name;

@@ -15,4 +15,5 @@ public record CramSchoolDTO (
         String description
 )
 {
+
 }

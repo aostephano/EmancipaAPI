@@ -1,5 +1,6 @@
 package dev.aostephano.emancipaapi.CramScrools.Controllers;
 
+import dev.aostephano.emancipaapi.CramScrools.Models.Address;
 import dev.aostephano.emancipaapi.CramScrools.Models.CramSchool;
 import dev.aostephano.emancipaapi.CramScrools.Models.CramSchoolDTO;
 import dev.aostephano.emancipaapi.CramScrools.Repositories.CramSchoolRepository;
@@ -45,11 +46,22 @@ public class CramSchoolController {
         if (optionalCramSchool.isPresent()) {
             // Get the CramSchool from the optional
             CramSchool newCramSchool = optionalCramSchool.get();
+
             // Update the CramSchool Object ref and the database
             newCramSchool.setName(data.name());
             newCramSchool.setBusinessHour(data.businessHour());
             newCramSchool.setDescription(data.description());
-            newCramSchool.setAddress(data.address());
+
+            // Get the existing Address object from the fetched CramSchool
+            Address existingAddress = newCramSchool.getAddress();
+
+            // Update the existing Address object with the new data
+            existingAddress.setAddress(data.address().getAddress());
+            existingAddress.setCity(data.address().getCity());
+            existingAddress.setState(data.address().getState());
+            existingAddress.setPostalCode(data.address().getPostalCode());
+
+
 
             return ResponseEntity.ok(newCramSchool);
         } else {
