@@ -1,4 +1,4 @@
-package dev.aostephano.emancipaapi.CramScrools.Models;
+package dev.aostephano.emancipaapi.CramScrools.Models.Address;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,4 +22,11 @@ public class Address {
     private String city;
     private String state;
     private String postalCode;
+
+    public Address(AddressRequest addressRequest) {
+        this.address = addressRequest.address();
+        this.city = addressRequest.city();
+        this.state = addressRequest.state();
+        this.postalCode = addressRequest.postalCode();
+    }
 }

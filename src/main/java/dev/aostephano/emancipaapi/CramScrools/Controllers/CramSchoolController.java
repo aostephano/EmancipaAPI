@@ -1,13 +1,16 @@
 package dev.aostephano.emancipaapi.CramScrools.Controllers;
 
-import dev.aostephano.emancipaapi.CramScrools.Models.Address;
-import dev.aostephano.emancipaapi.CramScrools.Models.CramSchool;
-import dev.aostephano.emancipaapi.CramScrools.Models.CramSchoolDTO;
+import dev.aostephano.emancipaapi.CramScrools.Models.Address.Address;
+import dev.aostephano.emancipaapi.CramScrools.Models.Address.AddressResponse;
+import dev.aostephano.emancipaapi.CramScrools.Models.CramSchool.CramSchool;
+import dev.aostephano.emancipaapi.CramScrools.Models.CramSchool.CramSchoolMapper;
+import dev.aostephano.emancipaapi.CramScrools.Models.CramSchool.CramSchoolRequest;
+import dev.aostephano.emancipaapi.CramScrools.Models.CramSchool.CramSchoolResponse;
 import dev.aostephano.emancipaapi.CramScrools.Repositories.CramSchoolRepository;
+import dev.aostephano.emancipaapi.CramScrools.Services.CramSchoolService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,31 +22,56 @@ import java.util.Optional;
 public class CramSchoolController {
 
     //Dependency Injection
-    @Autowired
-    private CramSchoolRepository cramSchoolRepository;
+    private final CramSchoolRepository cramSchoolRepository;
+    private final CramSchoolService cramSchoolService;
 
-    //GET /api/cursinho: return all CramSchools
-    @GetMapping("")
-    public ResponseEntity<List<CramSchool>> getAllCramSchools() {
-        List<CramSchool> allCramSchools = cramSchoolRepository.findAll();
-        return ResponseEntity.ok(allCramSchools);
+    public CramSchoolController(CramSchoolRepository cramSchoolRepository, CramSchoolService cramSchoolService) {
+        this.cramSchoolRepository = cramSchoolRepository;
+        this.cramSchoolService = cramSchoolService;
     }
 
     //POST /api/cursinho: register a new CramSchool
     @PostMapping("")
-    public ResponseEntity<CramSchool> registerCramSchool(@RequestBody @Valid CramSchoolDTO data){
+    public ResponseEntity<CramSchoolResponse> createNewCramSchool(@RequestBody @Valid CramSchoolRequest data){
+
+        // Controller Responsibility
         CramSchool newCramSchool = new CramSchool(data);
-        cramSchoolRepository.save(newCramSchool);
-        return ResponseEntity.ok(newCramSchool);
+        cramSchoolService.saveCramSchool(newCramSchool);
+
+        // Response Treatment
+        var cramSchoolResponse = CramSchoolMapper.fromCramSchoolToResponse(newCramSchool);
+
+        return ResponseEntity.ok(cramSchoolResponse);
+    }
+
+    //GET /api/cursinho: return all CramSchools
+    @GetMapping("")
+    public ResponseEntity<List<CramSchoolResponse>> getAllCramSchools() {
+        // Controller Responsibility
+        var allCramSchools = cramSchoolService.getAllCramSchools();
+
+        // Response Treatment
+        var allCramSchoolsResponse = allCramSchools.stream()
+        .map(CramSchoolMapper::fromCramSchoolToResponse)
+        .toList();
+
+        return ResponseEntity.ok(allCramSchoolsResponse);
     }
 
 
     //POST /api/cursinho: update a new CramSchool
     @Transactional
     @PutMapping("")
-    public ResponseEntity<CramSchool> updateCramSchoolByUuid(@RequestBody @Valid CramSchoolDTO data){
+    public ResponseEntity<CramSchool> updateCramSchoolByUuid(@RequestBody @Valid CramSchoolRequest data){
+
+
+
+
         Optional<CramSchool> optionalCramSchool = Optional.ofNullable(cramSchoolRepository.findByUuid(data.uuid()));
         if (optionalCramSchool.isPresent()) {
+
+            CramSchoolService.updateCramSchoolByUuid(data);
+
             // Get the CramSchool from the optional
             CramSchool newCramSchool = optionalCramSchool.get();
 
@@ -61,8 +89,6 @@ public class CramSchoolController {
             existingAddress.setState(data.address().getState());
             existingAddress.setPostalCode(data.address().getPostalCode());
 
-
-
             return ResponseEntity.ok(newCramSchool);
         } else {
             throw new EntityNotFoundException();
@@ -72,7 +98,7 @@ public class CramSchoolController {
     //DELETE /api/cursinho: delete a CramSchool by UUID
     @Transactional
     @DeleteMapping("")
-    public ResponseEntity<CramSchool> deleteCramSchool(@RequestBody @Valid CramSchoolDTO data){
+    public ResponseEntity<CramSchool> deleteCramSchool(@RequestBody @Valid CramSchoolRequest data){
         Optional<CramSchool> optionalCramSchool = Optional.ofNullable(cramSchoolRepository.findByUuid(data.uuid()));
         if (optionalCramSchool.isPresent()) {
             CramSchool cramSchool = optionalCramSchool.get();

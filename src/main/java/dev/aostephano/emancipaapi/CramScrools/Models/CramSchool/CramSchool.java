@@ -1,4 +1,5 @@
-package dev.aostephano.emancipaapi.CramScrools.Models;
+package dev.aostephano.emancipaapi.CramScrools.Models.CramSchool;
+import dev.aostephano.emancipaapi.CramScrools.Models.Address.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,13 +25,12 @@ public class CramSchool {
     private String description;
     private boolean active;
 
-    public CramSchool(CramSchoolDTO cramSchoolDTO) {
+    public CramSchool(CramSchoolRequest cramSchoolRequest) {
         this.uuid = UUID.randomUUID();
-        this.name = cramSchoolDTO.name();
-        this.address = cramSchoolDTO.address();
-        this.businessHour = cramSchoolDTO.businessHour();
-        this.description = cramSchoolDTO.description();
+        this.name = cramSchoolRequest.name();
+        this.address = cramSchoolRequest.address();
+        this.businessHour = cramSchoolRequest.businessHour();
+        this.description = cramSchoolRequest.description();
         this.setActive(true);
     }
-
 }
