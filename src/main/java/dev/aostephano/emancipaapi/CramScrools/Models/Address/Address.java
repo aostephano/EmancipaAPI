@@ -15,18 +15,19 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String address;
-    private String city;
-    private String state;
-    private String postalCode;
 
-    public Address(AddressRequest addressRequest) {
-        this.address = addressRequest.address();
-        this.city = addressRequest.city();
-        this.state = addressRequest.state();
-        this.postalCode = addressRequest.postalCode();
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String address;
+  private String city;
+  private String state;
+  private String postalCode;
+
+  public Address(AddressRequest addressRequest) {
+    this.address = addressRequest.address();
+    this.city = addressRequest.city();
+    this.state = addressRequest.state();
+    this.postalCode = addressRequest.postalCode();
+  }
 }

@@ -6,4 +6,5 @@ public record AddressResponse(
     String state,
     String postalCode
 ) {
+
 }

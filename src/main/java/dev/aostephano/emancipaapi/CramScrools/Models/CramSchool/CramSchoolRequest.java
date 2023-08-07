@@ -1,22 +1,20 @@
 package dev.aostephano.emancipaapi.CramScrools.Models.CramSchool;
 
 import dev.aostephano.emancipaapi.CramScrools.Models.Address.Address;
-import dev.aostephano.emancipaapi.CramScrools.Models.Address.AddressRequest;
 import jakarta.validation.constraints.NotNull;
-
 import java.util.UUID;
 
 public record CramSchoolRequest(
-        UUID uuid,
-        @NotNull
-        String name,
+    UUID uuid,
+    @NotNull
+    String name,
 
-        @NotNull
-        Address address,
-        @NotNull
-        String businessHour,
-        @NotNull
-        String description
-)
-{
+    @NotNull
+    Address address,
+    @NotNull
+    String businessHour,
+    @NotNull
+    String description
+) {
+
 }

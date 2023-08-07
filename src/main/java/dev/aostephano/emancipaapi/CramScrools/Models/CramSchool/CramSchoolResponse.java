@@ -1,6 +1,6 @@
 package dev.aostephano.emancipaapi.CramScrools.Models.CramSchool;
-import dev.aostephano.emancipaapi.CramScrools.Models.Address.AddressResponse;
 
+import dev.aostephano.emancipaapi.CramScrools.Models.Address.AddressResponse;
 import java.util.UUID;
 
 public record CramSchoolResponse(
@@ -9,6 +9,6 @@ public record CramSchoolResponse(
     AddressResponse address,
     String businessHour,
     String description
-)
-{
+) {
+
 }
