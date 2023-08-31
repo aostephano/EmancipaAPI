@@ -20,7 +20,8 @@ public class ApplyMapper {
         apply.getEmail(),
         apply.getPhone(),
         addressResponse,
-        questionResponses
+        questionResponses,
+        apply.isActive()
     );
 
   }

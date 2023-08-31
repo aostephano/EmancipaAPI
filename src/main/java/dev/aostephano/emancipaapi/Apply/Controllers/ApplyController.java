@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -59,14 +60,23 @@ public class ApplyController {
   //PUT: api/cursinho/apply/ - Update an apply
   @Transactional
   @PutMapping("")
-  public ResponseEntity<ApplyResponse> updateApplyByUuid(@RequestBody ApplyRequest data) {
+  public ResponseEntity<ApplyResponse> updateApplyByUuid(@RequestBody ApplyRequest applyRequest) {
     // Response Treatment
-    var updatedApply = applyService.updateApplyByUuid(data);
+    var updatedApply = applyService.updateApplyByUuid(applyRequest);
     var applyResponse = ApplyMapper.fromApplyToResponse(
         Objects.requireNonNull(updatedApply.getBody()));
 
     return ResponseEntity.ok(applyResponse);
   }
+
+
+//   DELETE: api/cursinho/apply/ - Deactive an apply by Uuid
+  @Transactional
+  @DeleteMapping("")
+  public ResponseEntity<ApplyResponse> deleteApplyByUuid(@RequestBody ApplyRequest applyRequest){
+    return applyService.deleteApplyByUuid(applyRequest);
+  }
+
 
   @GetMapping("/test")
   public ResponseEntity<List<Question>> getYourStringBack(

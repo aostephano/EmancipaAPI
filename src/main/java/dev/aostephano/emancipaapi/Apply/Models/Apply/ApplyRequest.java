@@ -15,7 +15,8 @@ public record ApplyRequest(
     @NotNull
     String phone,
     Address address,
-    List<Question> questions
+    List<Question> questions,
+    boolean active
 ) {
 
 }

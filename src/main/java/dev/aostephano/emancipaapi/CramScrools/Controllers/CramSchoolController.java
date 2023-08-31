@@ -79,7 +79,7 @@ public class CramSchoolController {
   //DELETE /api/cursinho: delete a CramSchool by UUID
   @Transactional
   @DeleteMapping("")
-  public ResponseEntity<CramSchool> deleteCramSchool(@RequestBody @Valid CramSchoolRequest data) {
-    return cramSchoolService.deleteCramSchoolByUuid(data);
+  public ResponseEntity<CramSchool> deleteCramSchool(@RequestBody @Valid CramSchoolRequest cramSchoolRequest) {
+    return cramSchoolService.deleteCramSchoolByUuid(cramSchoolRequest);
   }
 }

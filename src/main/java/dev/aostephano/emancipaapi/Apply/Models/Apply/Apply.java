@@ -35,9 +35,10 @@ public class Apply {
   @OneToOne(cascade = CascadeType.ALL)
   private Address address;
 
-
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "apply")
   private List<Question> questions = new ArrayList<>();
+
+  private boolean active;
 
   public Apply(ApplyRequest applyRequest) {
 
@@ -55,5 +56,6 @@ public class Apply {
     this.phone = applyRequest.phone();
     this.address = applyRequest.address();
     this.questions = questions;
+    this.setActive(true);
   }
 }

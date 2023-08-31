@@ -2,10 +2,13 @@ package dev.aostephano.emancipaapi.Apply.Services;
 
 import dev.aostephano.emancipaapi.Apply.Models.Apply.Apply;
 import dev.aostephano.emancipaapi.Apply.Models.Apply.ApplyRequest;
+import dev.aostephano.emancipaapi.Apply.Models.Apply.ApplyResponse;
 import dev.aostephano.emancipaapi.Apply.Models.Question.Question;
 import dev.aostephano.emancipaapi.Apply.Repositories.ApplyRepository;
 import dev.aostephano.emancipaapi.Apply.Repositories.QuestionRepository;
 import dev.aostephano.emancipaapi.CramScrools.Models.Address.Address;
+import dev.aostephano.emancipaapi.CramScrools.Models.CramSchool.CramSchool;
+import dev.aostephano.emancipaapi.CramScrools.Models.CramSchool.CramSchoolRequest;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
@@ -37,21 +40,21 @@ public class ApplyService {
     applyRepository.save(newApply);
   }
 
-  public ResponseEntity<Apply> updateApplyByUuid(ApplyRequest data) {
-    Optional<Apply> optionalApply = Optional.ofNullable(applyRepository.findByUuid(data.uuid()));
+  public ResponseEntity<Apply> updateApplyByUuid(ApplyRequest applyRequest) {
+    Optional<Apply> optionalApply = Optional.ofNullable(applyRepository.findByUuid(applyRequest.uuid()));
 
     if (optionalApply.isPresent()) {
       // Get the Apply from the optional
       Apply apply = optionalApply.get();
 
       //Update the Apply Object ref and the database
-      apply.setName(data.name());
-      apply.setEmail(data.email());
-      apply.setPhone(data.phone());
+      apply.setName(applyRequest.name());
+      apply.setEmail(applyRequest.email());
+      apply.setPhone(applyRequest.phone());
 
       // Get the existing Questions object from the fetched Apply
       List<Question> questions = apply.getQuestions();
-      List<Question> questionDataList = data.questions();
+      List<Question> questionDataList = applyRequest.questions();
 
       for (int i = 0; i < questions.size() && i < questionDataList.size(); i++) {
         questions.get(i).setAnswer(questionDataList.get(i).getAnswer());
@@ -61,14 +64,27 @@ public class ApplyService {
       Address existingAddress = apply.getAddress();
 
       // Update the existing Address object with the new data
-      existingAddress.setAddress(data.address().getAddress());
-      existingAddress.setCity(data.address().getCity());
-      existingAddress.setState(data.address().getState());
-      existingAddress.setPostalCode(data.address().getPostalCode());
+      existingAddress.setAddress(applyRequest.address().getAddress());
+      existingAddress.setCity(applyRequest.address().getCity());
+      existingAddress.setState(applyRequest.address().getState());
+      existingAddress.setPostalCode(applyRequest.address().getPostalCode());
 
       return ResponseEntity.ok(apply);
     } else {
       throw new EntityNotFoundException();
     }
   }
+
+  public ResponseEntity<ApplyResponse> deleteApplyByUuid(ApplyRequest applyRequest) {
+    Optional<Apply> optionalApply = Optional.ofNullable(applyRepository.findByUuid(applyRequest.uuid()));
+
+    if (optionalApply.isPresent()) {
+      Apply apply = optionalApply.get();
+      apply.setActive(false);
+      return ResponseEntity.noContent().build();
+    } else {
+      throw new EntityNotFoundException();
+    }
+  }
+
 }

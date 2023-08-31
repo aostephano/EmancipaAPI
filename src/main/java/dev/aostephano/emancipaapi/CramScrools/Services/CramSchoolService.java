@@ -58,9 +58,9 @@ public class CramSchoolService {
 
   }
 
-  public ResponseEntity<CramSchool> deleteCramSchoolByUuid(CramSchoolRequest data) {
+  public ResponseEntity<CramSchool> deleteCramSchoolByUuid(CramSchoolRequest cramSchoolRequest) {
     Optional<CramSchool> optionalCramSchool = Optional.ofNullable(
-        cramSchoolRepository.findByUuid(data.uuid()));
+        cramSchoolRepository.findByUuid(cramSchoolRequest.uuid()));
     if (optionalCramSchool.isPresent()) {
       var cramSchool = optionalCramSchool.get();
       cramSchool.setActive(false);

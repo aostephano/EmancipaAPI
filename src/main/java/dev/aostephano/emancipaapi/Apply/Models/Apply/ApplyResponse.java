@@ -15,9 +15,9 @@ public record ApplyResponse(
     @NotNull
     String phone,
     AddressResponse address,
-
     @NotNull
-    List<QuestionResponse> questions
+    List<QuestionResponse> questions,
+    boolean active
 ) {
 
 }
