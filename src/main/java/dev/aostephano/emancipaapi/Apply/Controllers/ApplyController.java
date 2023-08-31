@@ -4,13 +4,11 @@ import dev.aostephano.emancipaapi.Apply.Models.Apply.Apply;
 import dev.aostephano.emancipaapi.Apply.Models.Apply.ApplyMapper;
 import dev.aostephano.emancipaapi.Apply.Models.Apply.ApplyRequest;
 import dev.aostephano.emancipaapi.Apply.Models.Apply.ApplyResponse;
-import dev.aostephano.emancipaapi.Apply.Models.Question.Question;
 import dev.aostephano.emancipaapi.Apply.Services.ApplyService;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/cursinho/apply")
+@RequestMapping("cursinho/apply")
 public class ApplyController {
 
   //Dependency Injection
@@ -78,21 +76,10 @@ public class ApplyController {
   }
 
 
-  @GetMapping("/test")
-  public ResponseEntity<List<Question>> getYourStringBack(
-      @RequestBody Map<String, String> requestBody) {
-
-    String yourString = requestBody.get("uuid");
-
-    // Handle missing UUID in the request
-    if (yourString == null) {
-      return ResponseEntity.badRequest().build();
-    }
-
-    UUID applyUuid = UUID.fromString(yourString);
-    var questionsByUuid = applyService.getQuestionsByApplyUuid(applyUuid);
-    System.out.println(questionsByUuid);
-
-    return ResponseEntity.ok(questionsByUuid);
+  @GetMapping("/questions")
+  public ResponseEntity<Apply> getApplyByEmail(@RequestBody Map<String, String> requestBody) {
+    var email = requestBody.get("email");
+    var apply = applyService.getApplyByEmail(email);
+    return ResponseEntity.ok(apply);
   }
 }

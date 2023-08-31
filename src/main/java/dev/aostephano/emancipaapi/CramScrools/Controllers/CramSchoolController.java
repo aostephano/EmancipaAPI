@@ -13,6 +13,7 @@ import java.util.Objects;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/cursinho")
+@RequestMapping("cursinho")
 public class CramSchoolController {
 
   //Dependency Injection
@@ -81,5 +82,18 @@ public class CramSchoolController {
   @DeleteMapping("")
   public ResponseEntity<CramSchool> deleteCramSchool(@RequestBody @Valid CramSchoolRequest cramSchoolRequest) {
     return cramSchoolService.deleteCramSchoolByUuid(cramSchoolRequest);
+  }
+
+
+  //GET /api/cursinho/{cramSchoolSuffix}: return a CramSchool by csSuffix
+  @GetMapping("/{cramSchoolSuffix}")
+  public ResponseEntity<CramSchoolResponse> getCramSchoolBySuffix(@PathVariable String cramSchoolSuffix) {
+    // Controller Responsibility
+    var cramSchool = cramSchoolService.getCramSchoolBySuffix(cramSchoolSuffix);
+
+    // Response Treatment
+    var cramSchoolResponse = CramSchoolMapper.fromCramSchoolToResponse(cramSchool);
+
+    return ResponseEntity.ok(cramSchoolResponse);
   }
 }

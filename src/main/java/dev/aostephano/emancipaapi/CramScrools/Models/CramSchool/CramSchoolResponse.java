@@ -6,6 +6,8 @@ import java.util.UUID;
 public record CramSchoolResponse(
     UUID uuid,
     String name,
+    String cramSchoolSuffix,
+    String school,
     AddressResponse address,
     String businessHour,
     String description

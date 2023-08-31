@@ -69,4 +69,8 @@ public class CramSchoolService {
       throw new EntityNotFoundException();
     }
   }
+
+  public CramSchool getCramSchoolBySuffix(String cramSchoolSuffix) {
+    return cramSchoolRepository.findByCramSchoolSuffix(cramSchoolSuffix);
+  }
 }
