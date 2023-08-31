@@ -23,6 +23,5 @@ public class ApplyMapper {
         questionResponses,
         apply.isActive()
     );
-
   }
 }

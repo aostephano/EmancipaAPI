@@ -7,8 +7,6 @@ import dev.aostephano.emancipaapi.Apply.Models.Question.Question;
 import dev.aostephano.emancipaapi.Apply.Repositories.ApplyRepository;
 import dev.aostephano.emancipaapi.Apply.Repositories.QuestionRepository;
 import dev.aostephano.emancipaapi.CramScrools.Models.Address.Address;
-import dev.aostephano.emancipaapi.CramScrools.Models.CramSchool.CramSchool;
-import dev.aostephano.emancipaapi.CramScrools.Models.CramSchool.CramSchoolRequest;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
@@ -87,4 +85,7 @@ public class ApplyService {
     }
   }
 
+  public Apply getApplyByEmail(String email) {
+    return applyRepository.getAppliesByEmail(email);
+  }
 }

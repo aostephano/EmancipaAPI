@@ -8,7 +8,10 @@ public record CramSchoolRequest(
     UUID uuid,
     @NotNull
     String name,
-
+    @NotNull
+    String cramSchoolSuffix,
+    @NotNull
+    String school,
     @NotNull
     Address address,
     @NotNull

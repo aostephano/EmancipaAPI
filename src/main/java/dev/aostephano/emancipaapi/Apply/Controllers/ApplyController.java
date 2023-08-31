@@ -8,7 +8,6 @@ import dev.aostephano.emancipaapi.Apply.Models.Question.Question;
 import dev.aostephano.emancipaapi.Apply.Services.ApplyService;
 import jakarta.transaction.Transactional;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.Map; 
 
 @RestController
 @RequestMapping("api/cursinho/apply")
@@ -69,14 +69,12 @@ public class ApplyController {
     return ResponseEntity.ok(applyResponse);
   }
 
-
 //   DELETE: api/cursinho/apply/ - Deactive an apply by Uuid
   @Transactional
   @DeleteMapping("")
   public ResponseEntity<ApplyResponse> deleteApplyByUuid(@RequestBody ApplyRequest applyRequest){
     return applyService.deleteApplyByUuid(applyRequest);
   }
-
 
   @GetMapping("/test")
   public ResponseEntity<List<Question>> getYourStringBack(

@@ -7,21 +7,13 @@ public class CramSchoolMapper {
   public static CramSchoolResponse fromCramSchoolToResponse(CramSchool cramSchool) {
     var addressResponse = AddressMapper.fromAddressToResponse(cramSchool.getAddress());
 
-    return new CramSchoolResponse(
-        cramSchool.getUuid(),
-        cramSchool.getName(),
-        addressResponse,
-        cramSchool.getBusinessHour(),
-        cramSchool.getDescription()
-    );
+    return new CramSchoolResponse(cramSchool.getUuid(), cramSchool.getName(),
+        cramSchool.getCramSchoolSuffix(), cramSchool.getSchool(), addressResponse,
+        cramSchool.getBusinessHour(), cramSchool.getDescription());
   }
 
   public static CramSchool fromRequestToCramSchool(CramSchoolRequest cramSchoolRequest) {
 
-    return new CramSchool(
-        cramSchoolRequest
-    );
+    return new CramSchool(cramSchoolRequest);
   }
-
-
 }
