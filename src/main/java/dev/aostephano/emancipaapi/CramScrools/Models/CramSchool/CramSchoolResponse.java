@@ -10,7 +10,8 @@ public record CramSchoolResponse(
     String school,
     AddressResponse address,
     String businessHour,
-    String description
+    String description,
+    boolean active
 ) {
 
 }
