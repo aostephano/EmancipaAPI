@@ -1,0 +1,21 @@
+{
+  "_id": "env_210fefa4054edfb62149d238e3d8a546927e560f",
+  "parentId": "wrk_a329ae746c26471183af3b00a4049daf",
+  "modified": 1694707699026,
+  "created": 1694707699026,
+  "name": "Base Environment",
+  "data": {
+    "base_local_url": "http://localhost:8080/api",
+    "base_remote_url": "https://murmuring-forest-17447-193d7778677f.herokuapp.com/api"
+  },
+  "dataPropertyOrder": {
+    "&": [
+      "base_local_url",
+      "base_remote_url"
+    ]
+  },
+  "color": null,
+  "isPrivate": false,
+  "metaSortKey": 1694707699026,
+  "_type": "environment"
+}

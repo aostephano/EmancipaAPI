@@ -1,0 +1,35 @@
+{
+  "_id": "req_136dea4aadcd4fd986942ebc765ee9d0",
+  "parentId": "fld_6ba2fd2be70a455bb0729b331117ae1c",
+  "modified": 1694708272406,
+  "created": 1694708272406,
+  "url": "{{ _.base_remote_url }}/cursinho/apply",
+  "name": "deleteApplyByUuid",
+  "description": "",
+  "method": "DELETE",
+  "body": {
+    "mimeType": "application/json",
+    "text": "  {\n    \"uuid\": \"4216e943-64b3-4401-bf93-4bda06c15335\",\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"phone\": \"+1-555-555-5555\",\n    \"address\": {\n      \"address\": null,\n      \"city\": \"Example City\",\n      \"state\": null,\n      \"postalCode\": null\n    },\n    \"questions\": [\n      {\n        \"questionText\": \"Question 1\",\n        \"answer\": null\n      },\n      {\n        \"questionText\": \"Question 2\",\n        \"answer\": null\n      },\n      {\n        \"questionText\": \"Question 3\",\n        \"answer\": null\n      },\n      {\n        \"questionText\": \"Question 4\",\n        \"answer\": null\n      },\n      {\n        \"questionText\": \"Question 5\",\n        \"answer\": null\n      }\n    ],\n    \"active\": true\n  }"
+  },
+  "parameters": [],
+  "headers": [
+    {
+      "name": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "name": "User-Agent",
+      "value": "insomnia/2023.5.8"
+    }
+  ],
+  "authentication": {},
+  "metaSortKey": -1694707883001.5,
+  "isPrivate": false,
+  "settingStoreCookies": true,
+  "settingSendCookies": true,
+  "settingDisableRenderRequestBody": false,
+  "settingEncodeUrl": true,
+  "settingRebuildPath": true,
+  "settingFollowRedirects": "global",
+  "_type": "request"
+}

@@ -1,0 +1,28 @@
+{
+  "_id": "req_df58eac2ba524290aaa727f1a0e5755a",
+  "parentId": "fld_eae87c81dd55408aafe54111c4086840",
+  "modified": 1694707877355,
+  "created": 1694707877355,
+  "url": "{{ _.base_remote_url }}/cursinho",
+  "name": "getAllCramSchools",
+  "description": "",
+  "method": "GET",
+  "body": {},
+  "parameters": [],
+  "headers": [
+    {
+      "name": "User-Agent",
+      "value": "insomnia/2023.5.8"
+    }
+  ],
+  "authentication": {},
+  "metaSortKey": -1694705184862,
+  "isPrivate": false,
+  "settingStoreCookies": true,
+  "settingSendCookies": true,
+  "settingDisableRenderRequestBody": false,
+  "settingEncodeUrl": true,
+  "settingRebuildPath": true,
+  "settingFollowRedirects": "global",
+  "_type": "request"
+}

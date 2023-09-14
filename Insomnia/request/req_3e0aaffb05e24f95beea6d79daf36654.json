@@ -1,0 +1,35 @@
+{
+  "_id": "req_3e0aaffb05e24f95beea6d79daf36654",
+  "parentId": "fld_eae87c81dd55408aafe54111c4086840",
+  "modified": 1694707848708,
+  "created": 1694707848708,
+  "url": "{{ _.base_remote_url }}/cursinho",
+  "name": "updateCramSchoolByUuid",
+  "description": "",
+  "method": "PUT",
+  "body": {
+    "mimeType": "application/json",
+    "text": "{\n  \"uuid\": \"ac208315-f8ae-4c66-b624-3be46d3dafe0\",\n  \"name\": \"{% faker 'company', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'en' %}\",\n  \"cramSchoolSuffix\": \"{% faker 'word', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'en' %}\",\n  \"school\": \"{% faker 'person', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'en' %}\",\n  \"address\": {\n    \"address\": \"456 Updated St\",\n    \"city\": \"{% base64 'decode', 'normal', '' %}\",\n    \"state\": \"Updated State\",\n    \"postalCode\": \"{% faker 'location', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'en' %}\"\n  },\n  \"businessHour\": \"10:00 AM - 6:00 PM\",\n  \"description\": \"This is an updated Cram School\"\n}\n"
+  },
+  "parameters": [],
+  "headers": [
+    {
+      "name": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "name": "User-Agent",
+      "value": "insomnia/2023.5.8"
+    }
+  ],
+  "authentication": {},
+  "metaSortKey": -1694702553527,
+  "isPrivate": false,
+  "settingStoreCookies": true,
+  "settingSendCookies": true,
+  "settingDisableRenderRequestBody": false,
+  "settingEncodeUrl": true,
+  "settingRebuildPath": true,
+  "settingFollowRedirects": "global",
+  "_type": "request"
+}

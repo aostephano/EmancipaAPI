@@ -1,0 +1,28 @@
+{
+  "_id": "req_0e57963f6c88472d8117f0d76f6421f7",
+  "parentId": "fld_6ba2fd2be70a455bb0729b331117ae1c",
+  "modified": 1694708083415,
+  "created": 1694708083415,
+  "url": "{{ _.base_remote_url }}/cursinho/apply",
+  "name": "getAllApplys",
+  "description": "",
+  "method": "GET",
+  "body": {},
+  "parameters": [],
+  "headers": [
+    {
+      "name": "User-Agent",
+      "value": "insomnia/2023.5.8"
+    }
+  ],
+  "authentication": {},
+  "metaSortKey": -1694708083415,
+  "isPrivate": false,
+  "settingStoreCookies": true,
+  "settingSendCookies": true,
+  "settingDisableRenderRequestBody": false,
+  "settingEncodeUrl": true,
+  "settingRebuildPath": true,
+  "settingFollowRedirects": "global",
+  "_type": "request"
+}
