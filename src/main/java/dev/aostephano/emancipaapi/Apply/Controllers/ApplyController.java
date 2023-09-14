@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map; 
 
 @RestController
-@RequestMapping("api/cursinho/apply")
+@RequestMapping("cursinho/apply")
 public class ApplyController {
 
   //Dependency Injection
