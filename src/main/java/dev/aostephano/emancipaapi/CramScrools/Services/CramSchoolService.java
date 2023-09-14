@@ -41,6 +41,7 @@ public class CramSchoolService {
       cramSchool.setName(data.name());
       cramSchool.setBusinessHour(data.businessHour());
       cramSchool.setDescription(data.description());
+      cramSchool.setSchool(data.school());
 
       // Get the existing Address object from the fetched CramSchool
       Address existingAddress = cramSchool.getAddress();
